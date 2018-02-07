@@ -1,4 +1,4 @@
-# Magento Coding Standard
+# Magento Coding Standard [![Build Status](https://travis-ci.org/diazwatson/magento-coding-standards.svg?branch=master)](https://travis-ci.org/diazwatson/magento-coding-standards)
 
 Magento Coding Standard is a set of rules and sniffs for [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) tool.
 
