@@ -52,13 +52,6 @@ $ vendor/bin/phpcs --config-set m2-path /path/to/magento2
 >Notice: Dynamic sniffs will not work without specified ```m2-path``` configuration option.
 
 >Notice: Don't forget to clear `cache` folder in project root directory if you want to run sniffs for other Magento versions.
-
-# Marketplace Technical Review
-To make sure your extension will pass CodeSniffer checks of Magento Marketplace Technical Review, you could run `phpcs` command with `--severity=10` option.
-```sh
-$ vendor/bin/phpcs /path/to/your/extension --standard=Magento2 --severity=10 --extensions=php,phtml
-```
-**All severity 10 errors must be fixed in order to successfully pass Level 1 CodeSniffer checks.**
  
 ## Requirements
 
