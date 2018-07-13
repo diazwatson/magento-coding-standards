@@ -3,6 +3,7 @@
  * Copyright © Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
+
 namespace Magento2\Sniffs\Classes;
 
 use PHP_CodeSniffer\Sniffs\Sniff;
@@ -41,7 +42,7 @@ class MutableObjectsSniff implements Sniff
      * @var string
      */
     // @codingStandardsIgnoreLine
-    protected $warningMessage = '%s object MUST NOT be requested in constructor. It can only be passed as a method argument.';
+    protected $warningMessage = '%s object MUST NOT be requested in constructor. It can only be passed as a method argument. If you are working with sessions, consider using Proxies.';
 
     /**
      * Warning violation code.
@@ -59,7 +60,7 @@ class MutableObjectsSniff implements Sniff
         'Cookie',
         'Request\\\\Http',
         'Session',
-        'Request'
+        'Request',
     ];
 
     /**
@@ -109,8 +110,8 @@ class MutableObjectsSniff implements Sniff
     /**
      * Process namespaces.
      *
-     * @param File $sourceFile
-     * @param int $index
+     * @param File  $sourceFile
+     * @param int   $index
      * @param array $constructorDependencies
      * @param array $slicedArrayNamespaces
      * @param array $slicedArrayConstructorParams
@@ -123,7 +124,6 @@ class MutableObjectsSniff implements Sniff
         $slicedArrayNamespaces,
         $slicedArrayConstructorParams
     ) {
-    
 
         foreach ($slicedArrayNamespaces as $indexToken => $token) {
             if ($indexToken < $index && $token['code'] === T_USE) {
@@ -140,7 +140,7 @@ class MutableObjectsSniff implements Sniff
     /**
      * Process constructor dependencies.
      *
-     * @param File $sourceFile
+     * @param File  $sourceFile
      * @param array $constructorDependencies
      * @param array $slicedArrayConstructorParams
      * @return void
@@ -150,7 +150,6 @@ class MutableObjectsSniff implements Sniff
         $constructorDependencies,
         $slicedArrayConstructorParams
     ) {
-    
 
         foreach ($constructorDependencies as $variable => $dependency) {
             if ($matches = $this->constantsForbidden($dependency)) {
@@ -164,7 +163,7 @@ class MutableObjectsSniff implements Sniff
      * Get function position.
      *
      * @param File $sourceFile
-     * @param int $index
+     * @param int  $index
      * @return mixed
      */
     private function getFunctionPosition(File $sourceFile, $index)
@@ -180,10 +179,10 @@ class MutableObjectsSniff implements Sniff
     /**
      * Process "use" namespaces.
      *
-     * @param File $sourceFile
+     * @param File   $sourceFile
      * @param string $index
-     * @param array $constructorDependencies
-     * @param array $slicedArrayConstructorParams
+     * @param array  $constructorDependencies
+     * @param array  $slicedArrayConstructorParams
      * @return void
      */
     private function processUseSingle(
@@ -192,7 +191,6 @@ class MutableObjectsSniff implements Sniff
         $constructorDependencies,
         $slicedArrayConstructorParams
     ) {
-    
 
         $source = '';
         $nextUse = $sourceFile->findNext(T_SEMICOLON, $index);
@@ -233,8 +231,8 @@ class MutableObjectsSniff implements Sniff
     /**
      * Add warning.
      *
-     * @param File $sourceFile
-     * @param int $index
+     * @param File   $sourceFile
+     * @param int    $index
      * @param string $replacement
      * @return void
      */
@@ -253,7 +251,7 @@ class MutableObjectsSniff implements Sniff
      * Find an index of a tag by its content.
      *
      * @param string $content
-     * @param array $slicedArrayConstructorParams
+     * @param array  $slicedArrayConstructorParams
      * @return mixed
      */
     private function findIndexByTagContent($content, $slicedArrayConstructorParams)

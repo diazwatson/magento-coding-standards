@@ -26,7 +26,7 @@ class ThisInTemplateSniff implements Sniff
      *
      * @var string
      */
-    protected $warningMessage = 'Usage of $this in template files is deprecated.';
+    protected $warningMessage = 'Usage of $this in template files is deprecated. Consider using $block instead';
 
     /**
      * Warning violation code.

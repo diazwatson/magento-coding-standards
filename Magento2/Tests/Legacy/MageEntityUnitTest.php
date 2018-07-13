@@ -3,6 +3,7 @@
  * Copyright © Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
+
 namespace Magento2\Tests\Legacy;
 
 use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
@@ -24,9 +25,8 @@ class MageEntityUnitTest extends AbstractSniffUnitTest
             6 => 1,
             7 => 1,
             8 => 1,
-            9 => 1
+            9 => 1,
         ];
-
     }
 
     /**
